@@ -84,5 +84,10 @@ public class VerwaltungsGruppeBaharak implements MyList {
 			}
 
 		}
+		public void clear() {
+		for (int i = 0; i < objectListe.length; i++) {
+			objectListe[i] = null;
+		}
+	}
 	} // Ende VerwaltungsGruppe
 
