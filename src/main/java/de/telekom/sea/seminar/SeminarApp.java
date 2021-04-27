@@ -3,7 +3,11 @@ package de.telekom.sea.seminar;
 public class SeminarApp {
 	
 	private Object parent;
-	private static SeminarApp thisisInstance;
+	private static SeminarApp thisInstance;
+	
+	public SeminarApp() { //Constructor
+		thisInstance = this;
+	}
 	
 	public Object getParent() {
 		return parent;
@@ -21,7 +25,7 @@ public class SeminarApp {
 	
 	public static Object getRootApp() {
 		//return this; impossible if static
-		return thisisInstance;
+		return thisInstance;
 		
 	}
 
