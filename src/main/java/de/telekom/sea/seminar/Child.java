@@ -10,6 +10,6 @@ public class Child extends Object{ //interites all methods from Object e.g. hash
 
 	public void setParent(Object parent) {
 		this.parent = parent;
-		System.out.println("Child class: " + this);
+		
 	}
 }
