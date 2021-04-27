@@ -3,6 +3,7 @@ package de.telekom.sea.seminar;
 public class SeminarApp {
 	
 	private Object parent;
+	private static SeminarApp thisisInstance;
 	
 	public Object getParent() {
 		return parent;
@@ -18,8 +19,9 @@ public class SeminarApp {
 		System.out.println("Hello Maven");
 	}
 	
-	public Object getRootApp() {
-		return this;
+	public static Object getRootApp() {
+		//return this; impossible if static
+		return thisisInstance;
 		
 	}
 
