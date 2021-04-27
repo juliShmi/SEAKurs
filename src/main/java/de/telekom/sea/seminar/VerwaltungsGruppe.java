@@ -1,6 +1,6 @@
 package de.telekom.sea.seminar;
 
-public class VerwaltungsGruppe extends Child{
+public class VerwaltungsGruppe extends Child implements MyList{
 
 	private Object[] objectListe = new Object[15];
 	private int index = 0;

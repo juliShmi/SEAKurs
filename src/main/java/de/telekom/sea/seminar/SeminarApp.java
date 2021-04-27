@@ -1,6 +1,6 @@
 package de.telekom.sea.seminar;
 
-public class SeminarApp extends Child {
+public class SeminarApp extends Child{
 
 	private static SeminarApp thisInstance;
 
@@ -32,7 +32,7 @@ public class SeminarApp extends Child {
 		
 		gruppe1.get(0);
 		gruppe1.get(1);
-
+		gruppe1.size();
 		gruppe1.remove(teilnehmer1);
 		System.out.println("Size is: "+ gruppe1.size());
 	
