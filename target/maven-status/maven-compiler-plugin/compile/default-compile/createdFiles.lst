@@ -1,5 +1,3 @@
-MyList.class
-VerwaltungsGruppeBaharak.class
-Teilnehmer.class
-Main.class
-VerwaltungsGruppe.class
+de/telekom/sea/Main.class
+de/telekom/sea/seminar/SeminarApp.class
+de/telekom/sea/seminar/Person.class
