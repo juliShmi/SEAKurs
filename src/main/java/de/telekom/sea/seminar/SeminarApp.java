@@ -1,32 +1,23 @@
 package de.telekom.sea.seminar;
 
-public class SeminarApp {
-	
-	private Object parent;
+public class SeminarApp extends Child {
+
 	private static SeminarApp thisInstance;
-	
-	public SeminarApp() { //Constructor
+
+	public SeminarApp() { // Constructor
 		thisInstance = this;
 	}
-	
-	public Object getParent() {
-		return parent;
-	}
-	
-	public void setParent(Object parent) {
-		this.parent = parent;
-	}
-	
+
 	public void run(String[] args) {
 		Person child = new Person();
 		child.setParent(this);
 		System.out.println("Hello Maven");
 	}
-	
+
 	public static Object getRootApp() {
-		//return this; impossible if static
+		// return this; impossible if static
 		return thisInstance;
-		
+
 	}
 
 }
