@@ -32,8 +32,8 @@ public class VerwaltungsGruppe extends Child implements MyList{
 	}
 
 	public Object get(int i) {
-		System.out.println("teilnehmerGruppe[" + i + "] " + ((Person) objectListe[i]).getVorname() + " "
-				+ ((Person) objectListe[i]).getNachname());
+//		System.out.println("teilnehmerGruppe[" + i + "] " + ((Person) objectListe[i]).getVorname() + " "
+//				+ ((Person) objectListe[i]).getNachname());
 		return objectListe[i];
 
 	}
