@@ -17,7 +17,7 @@ public class Menu implements MyMenu {
 			result = inputMenu();
 			checkMenu(result);
 		} while (!result.equals("4"));
-		// haelt die Schleife bis zum Abbruch am Leben
+
 	}
 
 	private void showMenu() {
@@ -37,6 +37,7 @@ public class Menu implements MyMenu {
 		switch (eingabe) {
 		case "1":
 			System.out.println("1: Person anlegen");
+			inputPerson();
 			break;
 		case "2":
 			System.out.println("2: Liste anzeigen");
@@ -44,6 +45,7 @@ public class Menu implements MyMenu {
 			break;
 		case "3":
 			System.out.println("3: Liste löschen");
+			removeAll();
 			break;
 		case "4":
 			System.out.println("4: Beenden");
@@ -54,22 +56,35 @@ public class Menu implements MyMenu {
 	}
 
 	private void inputPerson() {
-
+		Person p = new Person();
+		String firstName;
+		String lastName;
+		System.out.println("Bitte einen Vornamen eingeben: ");
+		firstName = scanner.nextLine();
+		System.out.println("Bitte einen Nachnamen eingeben: ");
+		lastName = scanner.nextLine();
+		p.setVorname(firstName);
+		p.setNachname(lastName);
+		myList.add(p);
 	}
 
 	private void listAllPersons() {
+		if (myList.size() == 0) {
+			System.out.println("Die Liste ist leer");
+		} else {
+			for (int i = 0; i < myList.size(); i++) {
+				if (myList.get(i) != null) {
+					Person p = (Person) myList.get(i);
+					System.out.println(p.getVorname() + " " + p.getNachname());
+				}
 
-		for (int i = 0; i < myList.size(); i++) {
-			if (myList.get(i) != null) {
-				Person p = (Person) myList.get(i);
-				System.out.println(p.getVorname() + " " + p.getNachname());
 			}
-
 		}
 
 	}
 
 	private void removeAll() {
+		myList.clear();
 
 	}
 
