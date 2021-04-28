@@ -16,7 +16,7 @@ public class Menu implements MyMenu {
 			showMenu();
 			result = inputMenu();
 			checkMenu(result);
-		} while (!result.equals("4"));
+		} while (!result.equals("5"));
 
 	}
 
@@ -25,7 +25,8 @@ public class Menu implements MyMenu {
 		System.out.println("1: Person anlegen");
 		System.out.println("2: Liste anzeigen");
 		System.out.println("3: Liste löschen");
-		System.out.println("4: Beenden");
+		System.out.println("4: Person löschen");
+		System.out.println("5: Beenden");
 	}
 
 	private String inputMenu() {
@@ -48,7 +49,11 @@ public class Menu implements MyMenu {
 			removeAll();
 			break;
 		case "4":
-			System.out.println("4: Beenden");
+			System.out.println("4: Person löschen");
+			removePerson();
+			break;
+		case "5":
+			System.out.println("5: Beenden");
 			break;
 		default:
 			System.out.println("Falsche Eingabe");
@@ -77,10 +82,21 @@ public class Menu implements MyMenu {
 					Person p = (Person) myList.get(i);
 					System.out.println(p.getVorname() + " " + p.getNachname());
 				}
-
 			}
 		}
 
+	}
+
+	private void removePerson() {
+		System.out.println("Bitte zu löschenden Index");
+		int index = scanner.nextInt();
+		boolean success = myList.remove(index);
+		if (success) {
+			System.out.println("Löschen erfolgreich");
+		} else {
+			System.out.println("Löschen nicht erfolgreich");
+		}
+		scanner.nextLine();
 	}
 
 	private void removeAll() {

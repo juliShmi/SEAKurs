@@ -10,6 +10,8 @@ public interface MyList {
 	
 	public boolean remove(Object obj);
 	
+	public boolean remove(int i);
+	
 	public void clear();
 	
 	//public boolean equalsLists(Object obj);//public void printList();

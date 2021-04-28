@@ -1,6 +1,6 @@
 package de.telekom.sea.seminar;
 
-public class VerwaltungsGruppe extends Child implements MyList{
+public class VerwaltungsGruppe extends Child implements MyList {
 
 	private Object[] objectListe = new Object[15];
 	private int index = 0;
@@ -49,6 +49,21 @@ public class VerwaltungsGruppe extends Child implements MyList{
 			return true;
 		}
 		return false;
+	}
+
+	public boolean remove(int index) {
+		int i;
+		if (index >= 0 && index < this.size()) {
+			objectListe[index] = null;
+			i = index;
+			while ((i < objectListe.length) && (objectListe[i + 1] != null)) {
+				objectListe[i] = objectListe[i + 1];
+				objectListe[i + 1] = null;
+				i++;
+			}
+			return true;
+		} else
+			return false;
 	}
 
 	public void clear() {
