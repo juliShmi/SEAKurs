@@ -1,6 +1,6 @@
 package de.telekom.sea.seminar;
 
-public class Person extends Child {
+public class Person extends BaseObject {
 		
 	private String vorname;
 	private String nachname;

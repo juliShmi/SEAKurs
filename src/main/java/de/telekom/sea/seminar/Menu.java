@@ -2,14 +2,18 @@ package de.telekom.sea.seminar;
 
 public class Menu implements MyMenu {
 
-	private MyList myList;
+	private MyList verwaltungsGruppe;
 
 	private java.util.Scanner scanner = new java.util.Scanner(System.in);
 	private String result;
 
-	public void setMyList(MyList myList) {
-		this.myList = myList;
+
+	
+	public Menu(MyList myList) { //needed for parameters
+		verwaltungsGruppe = myList;
 	}
+	
+	public Menu() {} //needed to say new Menu()
 
 	public void keepAsking() {
 		do {
@@ -70,16 +74,16 @@ public class Menu implements MyMenu {
 		lastName = scanner.nextLine();
 		p.setVorname(firstName);
 		p.setNachname(lastName);
-		myList.add(p);
+		verwaltungsGruppe.add(p);
 	}
 
 	private void listAllPersons() {
-		if (myList.size() == 0) {
+		if (verwaltungsGruppe.size() == 0) {
 			System.out.println("Die Liste ist leer");
 		} else {
-			for (int i = 0; i < myList.size(); i++) {
-				if (myList.get(i) != null) {
-					Person p = (Person) myList.get(i);
+			for (int i = 0; i < verwaltungsGruppe.size(); i++) {
+				if (verwaltungsGruppe.get(i) != null) {
+					Person p = (Person) verwaltungsGruppe.get(i);
 					System.out.println(p.getVorname() + " " + p.getNachname());
 				}
 			}
@@ -90,7 +94,7 @@ public class Menu implements MyMenu {
 	private void removePerson() {
 		System.out.println("Bitte zu löschenden Index");
 		int index = scanner.nextInt();
-		boolean success = myList.remove(index);
+		boolean success = verwaltungsGruppe.remove(index);
 		if (success) {
 			System.out.println("Löschen erfolgreich");
 		} else {
@@ -100,8 +104,9 @@ public class Menu implements MyMenu {
 	}
 
 	private void removeAll() {
-		myList.clear();
+		verwaltungsGruppe.clear();
 
 	}
 
 }
+
