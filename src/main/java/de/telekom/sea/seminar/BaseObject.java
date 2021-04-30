@@ -6,6 +6,16 @@ public class BaseObject extends Object { // interites all methods from Object e.
 
 	private Object parent;
 
+	private int i;
+
+	public int getI() {
+		return i;
+	}
+
+	protected void setI(int i) {
+		this.i = i;
+	}
+
 	// eindeutige ID fuer jede neue Instanz
 	private long id;
 
@@ -37,17 +47,14 @@ public class BaseObject extends Object { // interites all methods from Object e.
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == this) {			// dieselbe Identitaet festzustellen (bin ich ich?)
-			return true;
-		}
-		if (obj == null) {			// is Object null?
+		/*
+		 * if (obj == this) { // dieselbe Identitaet festzustellen (bin ich ich?) return
+		 * true; } if (obj == null) { // is Object null? return false; }
+		 */ if (!(obj instanceof BaseObject)) { // wenn das ist nicht ein Instanz von BaseObject (derselbe Typ)
 			return false;
 		}
-		if (!(obj instanceof BaseObject)) { //wenn das ist nicht ein Instanz von BaseObject (derselbe Typ)
-			return false;
-		}
-		BaseObject baseobject = (BaseObject) obj; 	//cast auf den Typ BaseObject
-		
-		return (baseobject.id ==this.id); //<---- short version of  if-else (compares inhalt (id))
+		BaseObject baseobject = (BaseObject) obj; // cast auf den Typ BaseObject
+
+		return (baseobject.id == this.id); // <---- short version of if-else (compares inhalt (id))
 	}
 }

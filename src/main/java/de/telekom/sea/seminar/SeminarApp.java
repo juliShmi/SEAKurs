@@ -2,18 +2,20 @@ package de.telekom.sea.seminar;
 
 public class SeminarApp extends BaseObject {
 
-	private static SeminarApp thisInstance;
+	private static SeminarApp thisInstance; // = null by default
 
-	public SeminarApp() { // Constructor
-		thisInstance = this;
+	public SeminarApp() {
+		if (thisInstance == null) // Constructor {
+
+			thisInstance = this;
 	}
 
 	public void run(String[] args) {
 //		//
 		MyList verwaltungsgruppe = new VerwaltungsGruppe();
-		MyMenu menu2 = new Menu(); //empty constructor
-		
-		MyMenu menu = new Menu(verwaltungsgruppe); //constructor with parameter
+		MyMenu menu2 = new Menu(); // empty constructor
+
+		MyMenu menu = new Menu(verwaltungsgruppe); // constructor with parameter
 		menu.keepAsking();
 
 	}
