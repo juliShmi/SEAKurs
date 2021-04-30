@@ -2,13 +2,9 @@ package de.telekom.sea.seminar;
 
 public class SeminarApp extends BaseObject {
 
-	private static SeminarApp thisInstance; // = null by default
+	private static SeminarApp theInstance; // = null by default
 
-	public SeminarApp() {
-		if (thisInstance == null) // Constructor {
-
-			thisInstance = this;
-	}
+	private SeminarApp() {}
 
 	public void run(String[] args) {
 //		//
@@ -20,9 +16,12 @@ public class SeminarApp extends BaseObject {
 
 	}
 
-	public static Object getRootApp() {
+	public static SeminarApp getRootApp() {
+		if (theInstance == null) {
+			theInstance = new SeminarApp();
+		}
 		// return this; impossible if static
-		return thisInstance;
+		return theInstance;
 
 	}
 
