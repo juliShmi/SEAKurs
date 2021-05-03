@@ -8,8 +8,8 @@ public class SeminarApp extends BaseObject {
 
 	public void run(String[] args) {
 //		//
-		VerwaltungsGruppe verwaltungsGruppe = new VerwaltungsGruppe();
-		Menu menu = new Menu(verwaltungsGruppe);
+		MyList verwaltungsGruppe = new VerwaltungsGruppe();
+		MyMenu menu = new Menu(verwaltungsGruppe);
 		verwaltungsGruppe.subscribe(menu);
 		menu.keepAsking();// empty constructor
 
