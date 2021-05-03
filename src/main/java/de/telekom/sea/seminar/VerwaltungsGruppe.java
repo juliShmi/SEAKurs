@@ -1,9 +1,11 @@
 package de.telekom.sea.seminar;
 
-public class VerwaltungsGruppe extends BaseObject implements MyList {
+public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegistration {
 
 	private Object[] objectListe = new Object[15];
 	private int index = 0;
+	
+	private EventListener eventListener;
 
 	public boolean add(Object obj) {
 		if (obj != null) {
@@ -13,6 +15,9 @@ public class VerwaltungsGruppe extends BaseObject implements MyList {
 			objectListe[index] = obj;
 			System.out.println("index = " + index);
 			++index;
+			Event event = new Event();
+			event.setDescription("Teilnehmer added");
+			eventListener.receive(event);
 			return true;
 		}
 
@@ -20,7 +25,11 @@ public class VerwaltungsGruppe extends BaseObject implements MyList {
 			return false;
 		}
 	}
-
+	
+	public void subscribe(EventListener eventListener) {
+		this.eventListener = eventListener;
+	}
+	
 	public int size() {
 		int sum = 0;
 		for (int i = 0; i < objectListe.length; i++) {
@@ -68,8 +77,10 @@ public class VerwaltungsGruppe extends BaseObject implements MyList {
 
 	public void clear() {
 		for (int i = 0; i < objectListe.length; i++) {
-			objectListe[i] = null;
-		}
+			objectListe[i] = null;}
+		Event event = new Event();
+		event.setDescription("Alle Teilnehmer deleted");
+		eventListener.receive(event);
 	}
 
 	public boolean doubleCheck(Object obj) {

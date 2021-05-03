@@ -14,6 +14,7 @@ public interface MyList {
 	
 	public void clear();
 	
+	
 	//public boolean equalsLists(Object obj);//public void printList();
 }
 
