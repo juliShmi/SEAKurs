@@ -1,6 +1,6 @@
 package de.telekom.sea.seminar;
 
-public interface MyList {
+public interface MyList extends EventRegistration {
 	
 	public boolean add(Object obj); //anmelden
 	
@@ -13,6 +13,7 @@ public interface MyList {
 	public boolean remove(int i);
 	
 	public void clear();
+	
 	
 	//public boolean equalsLists(Object obj);//public void printList();
 }

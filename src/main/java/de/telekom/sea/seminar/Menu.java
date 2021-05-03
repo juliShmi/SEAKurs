@@ -1,12 +1,11 @@
 package de.telekom.sea.seminar;
 
-public class Menu implements MyMenu {
+public class Menu implements MyMenu, EventListener {
 
 	private MyList verwaltungsGruppe;
 
 	private java.util.Scanner scanner = new java.util.Scanner(System.in);
 	private String result;
-
 
 	
 	public Menu(MyList myList) { //needed for parameters
@@ -22,6 +21,11 @@ public class Menu implements MyMenu {
 			checkMenu(result);
 		} while (!result.equals("5"));
 
+	}
+	
+	public void receive(Event event) {
+		listAllPersons();
+		System.out.println(event.getDescription());
 	}
 
 	private void showMenu() {
