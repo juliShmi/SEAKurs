@@ -47,10 +47,7 @@ public class BaseObject extends Object { // interites all methods from Object e.
 
 	@Override
 	public boolean equals(Object obj) {
-		/*
-		 * if (obj == this) { // dieselbe Identitaet festzustellen (bin ich ich?) return
-		 * true; } if (obj == null) { // is Object null? return false; }
-		 */ if (!(obj instanceof BaseObject)) { // wenn das ist nicht ein Instanz von BaseObject (derselbe Typ)
+		if (!(obj instanceof BaseObject)) { // wenn das ist nicht ein Instanz von BaseObject (derselbe Typ)
 			return false;
 		}
 		BaseObject baseobject = (BaseObject) obj; // cast auf den Typ BaseObject

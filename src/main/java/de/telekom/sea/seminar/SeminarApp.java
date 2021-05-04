@@ -4,15 +4,14 @@ public class SeminarApp extends BaseObject {
 
 	private static SeminarApp theInstance; // = null by default
 
-	private SeminarApp() {}
+	private SeminarApp() {
+	}
 
 	public void run(String[] args) {
-//		//
 		MyList verwaltungsGruppe = new VerwaltungsGruppe();
 		MyMenu menu = new Menu(verwaltungsGruppe);
 		verwaltungsGruppe.subscribe(menu);
 		menu.keepAsking();// empty constructor
-
 
 	}
 
@@ -20,7 +19,6 @@ public class SeminarApp extends BaseObject {
 		if (theInstance == null) {
 			theInstance = new SeminarApp();
 		}
-		// return this; impossible if static
 		return theInstance;
 
 	}
