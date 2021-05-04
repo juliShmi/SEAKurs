@@ -4,7 +4,7 @@ public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegist
 
 	private Object[] objectListe = new Object[15];
 	private int index = 0;
-	
+
 	private EventListener eventListener;
 
 	public boolean add(Object obj) {
@@ -16,7 +16,7 @@ public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegist
 			System.out.println("index = " + index);
 			++index;
 			Event event = new Event();
-			event.setDescription("Teilnehmer added");
+			event.setDescription("Person added");
 			eventListener.receive(event);
 			return true;
 		}
@@ -25,11 +25,11 @@ public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegist
 			return false;
 		}
 	}
-	
+
 	public void subscribe(EventListener eventListener) {
 		this.eventListener = eventListener;
 	}
-	
+
 	public int size() {
 		int sum = 0;
 		for (int i = 0; i < objectListe.length; i++) {
@@ -41,23 +41,31 @@ public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegist
 	}
 
 	public Object get(int i) {
-//		System.out.println("teilnehmerGruppe[" + i + "] " + ((Person) objectListe[i]).getVorname() + " "
-//				+ ((Person) objectListe[i]).getNachname());
 		return objectListe[i];
 
 	}
 
-	public boolean remove(Object obj) {
-		int i = 0;
-		if (obj != null) {
-			while (objectListe[i] != obj) {
-				i++;
+	public boolean remove(String vornameToRemove, String nachnameToRemove) {
+		boolean success = false;
+		if (this.objectListe.length > 0)
+			for (int i = 0; i < this.objectListe.length; i++) {
+				Person sPerson = (Person) this.objectListe[i];
+				if ((sPerson.getVorname().equals(vornameToRemove))
+						&& (sPerson.getNachname().equals(nachnameToRemove))) {
+					this.objectListe[i] = null;
+					for (int j = i; j < this.size(); j++) {
+						this.objectListe[j] = objectListe[j + 1];
+						objectListe[j + 1] = null;
+					}
+					Event event = new Event();
+					event.setDescription("Person(s) by name " + vornameToRemove + " " + nachnameToRemove + " deleted");
+					eventListener.receive(event);
+					success = true;
+					return success;
+				}
+
 			}
-			objectListe[i] = null;
-			index = i;
-			return true;
-		}
-		return false;
+		return success;
 	}
 
 	public boolean remove(int index) {
@@ -70,6 +78,9 @@ public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegist
 				objectListe[i + 1] = null;
 				i++;
 			}
+			Event event = new Event();
+			event.setDescription("Person in position" + i + " is deleted");
+			eventListener.receive(event);
 			return true;
 		} else
 			return false;
@@ -77,9 +88,10 @@ public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegist
 
 	public void clear() {
 		for (int i = 0; i < objectListe.length; i++) {
-			objectListe[i] = null;}
+			objectListe[i] = null;
+		}
 		Event event = new Event();
-		event.setDescription("Alle Teilnehmer deleted");
+		event.setDescription("All persons deleted");
 		eventListener.receive(event);
 	}
 
