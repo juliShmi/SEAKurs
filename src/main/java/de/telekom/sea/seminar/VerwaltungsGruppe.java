@@ -4,13 +4,17 @@ public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegist
 
 	private Object[] objectListe = new Object[15];
 	private int index = 0;
-	
+
 	private EventListener eventListener;
 
 	public boolean add(Object obj) {
 		if (obj != null) {
 			while (objectListe[index] != null) {
-				index++;
+				try {
+					index++;
+				} catch (RuntimeException e) {
+					System.out.println("No free places in list");
+				}
 			}
 			objectListe[index] = obj;
 			System.out.println("index = " + index);
@@ -19,17 +23,15 @@ public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegist
 			event.setDescription("Teilnehmer added");
 			eventListener.receive(event);
 			return true;
-		}
-
-		else {
-			return false;
+		} else {
+			throw new RuntimeException("Participant you're trying to add has value Null");
 		}
 	}
-	
+
 	public void subscribe(EventListener eventListener) {
 		this.eventListener = eventListener;
 	}
-	
+
 	public int size() {
 		int sum = 0;
 		for (int i = 0; i < objectListe.length; i++) {
@@ -41,9 +43,12 @@ public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegist
 	}
 
 	public Object get(int i) {
-//		System.out.println("teilnehmerGruppe[" + i + "] " + ((Person) objectListe[i]).getVorname() + " "
-//				+ ((Person) objectListe[i]).getNachname());
-		return objectListe[i];
+		if (i < objectListe.length) {
+			return objectListe[i];
+		} else {
+			throw new RuntimeException(
+					"Your index is out of bound. Max index is " + objectListe.length + ". Participant doesn't exist");
+		}
 
 	}
 
@@ -77,7 +82,8 @@ public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegist
 
 	public void clear() {
 		for (int i = 0; i < objectListe.length; i++) {
-			objectListe[i] = null;}
+			objectListe[i] = null;
+		}
 		Event event = new Event();
 		event.setDescription("Alle Teilnehmer deleted");
 		eventListener.receive(event);
