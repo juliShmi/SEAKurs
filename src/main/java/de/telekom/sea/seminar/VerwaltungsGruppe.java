@@ -4,7 +4,7 @@ public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegist
 
 	private Object[] objectListe = new Object[15];
 	private int index = 0;
-	
+
 	private EventListener eventListener;
 
 	public boolean add(Object obj) {
@@ -25,11 +25,11 @@ public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegist
 			return false;
 		}
 	}
-	
+
 	public void subscribe(EventListener eventListener) {
 		this.eventListener = eventListener;
 	}
-	
+
 	public int size() {
 		int sum = 0;
 		for (int i = 0; i < objectListe.length; i++) {
@@ -41,9 +41,11 @@ public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegist
 	}
 
 	public Object get(int i) {
-//		System.out.println("teilnehmerGruppe[" + i + "] " + ((Person) objectListe[i]).getVorname() + " "
-//				+ ((Person) objectListe[i]).getNachname());
-		return objectListe[i];
+		if (i < objectListe.length) {
+			return objectListe[i];
+		} else {
+			throw new RuntimeException("Participant doesn't exist");
+		}
 
 	}
 
@@ -77,7 +79,8 @@ public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegist
 
 	public void clear() {
 		for (int i = 0; i < objectListe.length; i++) {
-			objectListe[i] = null;}
+			objectListe[i] = null;
+		}
 		Event event = new Event();
 		event.setDescription("Alle Teilnehmer deleted");
 		eventListener.receive(event);
