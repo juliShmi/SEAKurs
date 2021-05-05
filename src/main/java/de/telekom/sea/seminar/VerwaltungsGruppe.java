@@ -58,7 +58,7 @@ public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegist
 						objectListe[j + 1] = null;
 					}
 					Event event = new Event();
-					event.setDescription("Person(s) by name " + vornameToRemove + " " + nachnameToRemove + " deleted");
+					event.setDescription("Person by name " + vornameToRemove + " " + nachnameToRemove + " deleted");
 					eventListener.receive(event);
 					success = true;
 					return success;

@@ -62,7 +62,7 @@ public class Menu implements MyMenu, EventListener {
 			removePerson();
 			break;
 		case "5":
-			System.out.println("5: delete person(s) by name");
+			System.out.println("5: delete person by name");
 			removeByName();
 			break;
 		case "6":
