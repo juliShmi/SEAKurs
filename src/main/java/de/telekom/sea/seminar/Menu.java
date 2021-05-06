@@ -16,6 +16,7 @@ public class Menu implements MyMenu, EventListener, java.io.Closeable {
 
 	@Override
 	public void close() {
+		scanner.close();
 		System.out.println("Program is closed");
 	}
 
