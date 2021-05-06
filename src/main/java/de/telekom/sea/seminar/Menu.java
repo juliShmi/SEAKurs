@@ -1,18 +1,24 @@
 package de.telekom.sea.seminar;
 
-public class Menu implements MyMenu, EventListener {
+public class Menu implements MyMenu, EventListener, java.io.Closeable {
 
 	private MyList verwaltungsGruppe;
 
 	private java.util.Scanner scanner = new java.util.Scanner(System.in);
 	private String result;
 
-	
-	public Menu(MyList myList) { //needed for parameters
+	public Menu(MyList myList) {
 		verwaltungsGruppe = myList;
 	}
-	
-	public Menu() {} //needed to say new Menu()
+
+	public Menu() {
+	}
+
+	@Override
+	public void close() {
+		scanner.close();
+		System.out.println("Program is closed");
+	}
 
 	public void keepAsking() {
 		do {
@@ -22,7 +28,7 @@ public class Menu implements MyMenu, EventListener {
 		} while (!result.equals("5"));
 
 	}
-	
+
 	public void receive(Event event) {
 		listAllPersons();
 		System.out.println(event.getDescription());
@@ -38,7 +44,9 @@ public class Menu implements MyMenu, EventListener {
 	}
 
 	private String inputMenu() {
-		return scanner.nextLine();
+		java.util.Scanner scanner = new java.util.Scanner(System.in);
+		var input = scanner.nextLine();
+		return input;
 
 	}
 
@@ -113,4 +121,3 @@ public class Menu implements MyMenu, EventListener {
 	}
 
 }
-
