@@ -7,7 +7,7 @@ public class Menu implements MyMenu, EventListener, java.io.Closeable {
 	private java.util.Scanner scanner = new java.util.Scanner(System.in);
 	private String result;
 
-	public Menu(MyList myList) { // needed for parameters
+	public Menu(MyList myList) {
 		verwaltungsGruppe = myList;
 	}
 
@@ -16,7 +16,7 @@ public class Menu implements MyMenu, EventListener, java.io.Closeable {
 
 	@Override
 	public void close() {
-		System.out.println("Program is closed");// needed to say new Menu()
+		System.out.println("Program is closed");
 	}
 
 	public void keepAsking() {
