@@ -17,7 +17,7 @@ public class SeminarApp extends BaseObject {
 	}
 
 	public static SeminarApp getRootApp() {
-		if (theInstance == null) {
+		if (theInstance == null) { 
 			theInstance = new SeminarApp();
 		}
 		// return this; impossible if static
