@@ -129,6 +129,9 @@ public class Menu implements MyMenu, EventListener, java.io.Closeable {
 		System.out.println("Please input letter(s) for searching");
 		String searchString = scanner.nextLine();
 		MyList subObjectListe = verwaltungsGruppe.search(searchString);
+		if (subObjectListe.size() == 0) {
+			System.out.println("subObjectListe ist leer");
+		}
 
 	}
 }

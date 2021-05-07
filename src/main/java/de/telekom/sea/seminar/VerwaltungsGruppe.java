@@ -114,7 +114,7 @@ public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegist
 		}
 		if (eventListener != null) {
 			Event event = new Event();
-			event.setDescription("SubList");
+			event.setDescription("SubList information above");
 			eventListener.receive(event);
 		}
 		return subList;
