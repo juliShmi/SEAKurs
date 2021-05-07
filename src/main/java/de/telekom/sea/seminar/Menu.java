@@ -127,16 +127,8 @@ public class Menu implements MyMenu, EventListener, java.io.Closeable {
 
 	private void searchPerson() {
 		System.out.println("Please input letter(s) for searching");
-		MyList subVerwaltungsGruppe = verwaltungsGruppe;
 		String searchString = scanner.nextLine();
-		for (int i = 0; i < subVerwaltungsGruppe.size(); i++) {
-			Person p = (Person) subVerwaltungsGruppe.get(i);
-			if (p.getVorname().toLowerCase().startsWith(searchString) && searchString != null) {
-				System.out.println(p.getVorname() + " " + p.getNachname());
-			} else
-				continue;
+		MyList subObjectListe = verwaltungsGruppe.search(searchString);
 
-		}
 	}
-
 }

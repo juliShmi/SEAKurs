@@ -19,9 +19,11 @@ public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegist
 			objectListe[index] = obj;
 			System.out.println("index = " + index);
 			++index;
-			Event event = new Event();
-			event.setDescription("Teilnehmer added");
-			eventListener.receive(event);
+			if (eventListener != null) {
+				Event event = new Event();
+				event.setDescription("Teilnehmer added");
+				eventListener.receive(event);
+			}
 			return true;
 		} else {
 			throw new RuntimeException("Participant you're trying to add has value Null");
@@ -84,9 +86,11 @@ public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegist
 		for (int i = 0; i < objectListe.length; i++) {
 			objectListe[i] = null;
 		}
-		Event event = new Event();
-		event.setDescription("Alle Teilnehmer deleted");
-		eventListener.receive(event);
+		if (eventListener != null) {
+			Event event = new Event();
+			event.setDescription("Alle Teilnehmer deleted");
+			eventListener.receive(event);
+		}
 	}
 
 	public boolean doubleCheck(Object obj) {
@@ -98,4 +102,22 @@ public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegist
 		return false;
 	}
 
+	public MyList search(String searchString) {
+		MyList subList = new VerwaltungsGruppe();
+		for (int i = 0; i < size(); i++) {
+			Person participant = ((Person) objectListe[i]);
+			if (participant.getVorname().toLowerCase().startsWith(searchString) && searchString != null) {
+				System.out.println("Found: " + participant.getVorname() + " " + participant.getNachname());
+				subList.add(participant);
+			} else
+				continue;
+		}
+		if (eventListener != null) {
+			Event event = new Event();
+			event.setDescription("SubList");
+			eventListener.receive(event);
+		}
+		return subList;
+
+	}
 }
