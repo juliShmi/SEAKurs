@@ -8,7 +8,7 @@ public interface MyList extends EventRegistration {
 	
 	public Object get(int i); //getTeilnehmer
 	
-	public boolean remove(Object obj);
+	public boolean remove(String vornameToRemove, String nachnameToRemove);
 	
 	public boolean remove(int i);
 	

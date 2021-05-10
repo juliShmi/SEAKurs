@@ -21,7 +21,7 @@ public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegist
 			++index;
 			if (eventListener != null) {
 				Event event = new Event();
-				event.setDescription("Teilnehmer added");
+				event.setDescription("Person added");
 				eventListener.receive(event);
 			}
 			return true;
@@ -54,17 +54,25 @@ public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegist
 
 	}
 
-	public boolean remove(Object obj) {
-		int i = 0;
-		if (obj != null) {
-			while (objectListe[i] != obj) {
-				i++;
-			}
-			objectListe[i] = null;
-			index = i;
-			return true;
-		}
-		return false;
+	public boolean remove(String vornameToRemove, String nachnameToRemove) {
+		boolean success = false;
+		if (this.objectListe.length > 0)
+			for (int i = 0; i < this.objectListe.length; i++) {
+				Person sPerson = (Person) this.objectListe[i];
+				if ((sPerson.getVorname().equals(vornameToRemove))
+						&& (sPerson.getNachname().equals(nachnameToRemove))) {
+					this.objectListe[i] = null;
+					for (int j = i; j < this.size(); j++) {
+						this.objectListe[j] = objectListe[j + 1];
+						objectListe[j + 1] = null;
+					}
+					Event event = new Event();
+					event.setDescription("Person(s) by name " + vornameToRemove + " " + nachnameToRemove + " deleted");
+					eventListener.receive(event);
+					success = true;
+					return success;
+				}
+			}return success;
 	}
 
 	public boolean remove(int index) {
@@ -77,6 +85,9 @@ public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegist
 				objectListe[i + 1] = null;
 				i++;
 			}
+			Event event = new Event();
+			event.setDescription("Person in position" + i + " is deleted");
+			eventListener.receive(event);
 			return true;
 		} else
 			return false;
@@ -88,7 +99,7 @@ public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegist
 		}
 		if (eventListener != null) {
 			Event event = new Event();
-			event.setDescription("Alle Teilnehmer deleted");
+			event.setDescription("All persons deleted");
 			eventListener.receive(event);
 		}
 	}
