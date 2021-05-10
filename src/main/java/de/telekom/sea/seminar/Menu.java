@@ -101,6 +101,7 @@ public class Menu implements MyMenu, EventListener, java.io.Closeable {
 			for (int i = 0; i < verwaltungsGruppe.size(); i++) {
 				if (verwaltungsGruppe.get(i) != null) {
 					Person p = (Person) verwaltungsGruppe.get(i);
+					System.out.println("---------------------------");
 					System.out.println(p.getVorname() + " " + p.getNachname());
 				}
 			}
