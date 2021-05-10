@@ -14,6 +14,8 @@ public interface MyList extends EventRegistration {
 	
 	public void clear();
 	
+	public MyList search(String searchString);
+		
 	
 	//public boolean equalsLists(Object obj);//public void printList();
 }

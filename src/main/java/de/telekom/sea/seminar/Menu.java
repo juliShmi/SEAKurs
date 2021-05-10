@@ -25,7 +25,7 @@ public class Menu implements MyMenu, EventListener, java.io.Closeable {
 			showMenu();
 			result = inputMenu();
 			checkMenu(result);
-		} while (!result.equals("5"));
+		} while (!result.equals("6"));
 
 	}
 
@@ -40,7 +40,8 @@ public class Menu implements MyMenu, EventListener, java.io.Closeable {
 		System.out.println("2: Liste anzeigen");
 		System.out.println("3: Liste löschen");
 		System.out.println("4: Person löschen");
-		System.out.println("5: Beenden");
+		System.out.println("5: Person suchen");
+		System.out.println("6: Beenden");
 	}
 
 	private String inputMenu() {
@@ -69,7 +70,11 @@ public class Menu implements MyMenu, EventListener, java.io.Closeable {
 			removePerson();
 			break;
 		case "5":
-			System.out.println("5: Beenden");
+			System.out.println("5: Person suchen");
+			searchPerson();
+			break;
+		case "6":
+			System.out.println("6: Beenden");
 			break;
 		default:
 			System.out.println("Falsche Eingabe");
@@ -96,6 +101,7 @@ public class Menu implements MyMenu, EventListener, java.io.Closeable {
 			for (int i = 0; i < verwaltungsGruppe.size(); i++) {
 				if (verwaltungsGruppe.get(i) != null) {
 					Person p = (Person) verwaltungsGruppe.get(i);
+					System.out.println("---------------------------");
 					System.out.println(p.getVorname() + " " + p.getNachname());
 				}
 			}
@@ -120,4 +126,13 @@ public class Menu implements MyMenu, EventListener, java.io.Closeable {
 
 	}
 
+	private void searchPerson() {
+		System.out.println("Please input letter(s) for searching");
+		String searchString = scanner.nextLine();
+		MyList subObjectListe = verwaltungsGruppe.search(searchString);
+		if (subObjectListe.size() == 0) {
+			System.out.println("subObjectListe ist leer");
+		}
+
+	}
 }
