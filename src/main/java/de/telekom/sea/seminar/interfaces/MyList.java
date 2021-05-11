@@ -1,4 +1,6 @@
-package de.telekom.sea.seminar;
+package de.telekom.sea.seminar.interfaces;
+
+import de.telekom.sea.seminar.events.EventRegistration;
 
 public interface MyList extends EventRegistration {
 	
@@ -15,6 +17,10 @@ public interface MyList extends EventRegistration {
 	public void clear();
 	
 	public MyList search(String searchString);
+	
+	
+	
+
 		
 	
 	//public boolean equalsLists(Object obj);//public void printList();

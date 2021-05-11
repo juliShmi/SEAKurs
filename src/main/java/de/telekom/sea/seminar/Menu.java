@@ -1,5 +1,16 @@
 package de.telekom.sea.seminar;
 
+import java.io.IOException;
+
+import de.telekom.sea.seminar.events.Event;
+import de.telekom.sea.seminar.events.EventListener;
+import de.telekom.sea.seminar.interfaces.MyList;
+import de.telekom.sea.seminar.interfaces.MyMenu;
+import de.telekom.sea.seminar.readers.PersonReader;
+import de.telekom.sea.seminar.readers.VerwaltungsGruppeReader;
+import de.telekom.sea.seminar.writers.PersonWriter;
+import de.telekom.sea.seminar.writers.VerwaltungsGruppeWriter;
+
 public class Menu implements MyMenu, EventListener, java.io.Closeable {
 
 	private MyList verwaltungsGruppe;
@@ -20,12 +31,12 @@ public class Menu implements MyMenu, EventListener, java.io.Closeable {
 		System.out.println("Program is closed");
 	}
 
-	public void keepAsking() {
+	public void keepAsking() throws IOException {
 		do {
 			showMenu();
 			result = inputMenu();
 			checkMenu(result);
-		} while (!result.equals("7"));
+		} while (!result.equals("9"));
 
 	}
 
@@ -42,17 +53,18 @@ public class Menu implements MyMenu, EventListener, java.io.Closeable {
 		System.out.println("4: delete person by index");
 		System.out.println("5: delete person by name");
 		System.out.println("6: search person");
-		System.out.println("7: quit");
+		System.out.println("7: write all list");
+		System.out.println("8: read file");
+		System.out.println("9: quit");
 	}
 
 	private String inputMenu() {
 		java.util.Scanner scanner = new java.util.Scanner(System.in);
 		var input = scanner.nextLine();
 		return input;
-
 	}
 
-	private void checkMenu(String eingabe) {
+	private void checkMenu(String eingabe) throws IOException {
 		switch (eingabe) {
 		case "1":
 			System.out.println("1: add  person");
@@ -79,7 +91,15 @@ public class Menu implements MyMenu, EventListener, java.io.Closeable {
 			searchPerson();
 			break;
 		case "7":
-			System.out.println("7: quit");
+			System.out.println("7: write all list");
+			writeAllList();
+			break;
+		case "8":
+			System.out.println("8: read file");
+			readFile();
+			break;
+		case "9":
+			System.out.println("9: quit");
 			break;
 		default:
 			System.out.println("wrong task");
@@ -106,7 +126,6 @@ public class Menu implements MyMenu, EventListener, java.io.Closeable {
 			for (int i = 0; i < verwaltungsGruppe.size(); i++) {
 				if (verwaltungsGruppe.get(i) != null) {
 					Person p = (Person) verwaltungsGruppe.get(i);
-					System.out.println("---------------------------");
 					System.out.println(p.getVorname() + " " + p.getNachname());
 				}
 			}
@@ -125,7 +144,7 @@ public class Menu implements MyMenu, EventListener, java.io.Closeable {
 		}
 		scanner.nextLine();
 	}
-	
+
 	private void removeByName() {
 		System.out.println("Please input first name:");
 		String vornameToRemove = scanner.nextLine();
@@ -151,6 +170,21 @@ public class Menu implements MyMenu, EventListener, java.io.Closeable {
 		if (subObjectListe.size() == 0) {
 			System.out.println("subObjectListe ist leer");
 		}
+
+	}
+
+	private void writeAllList() throws IOException {
+		System.out.println("File created");
+		VerwaltungsGruppeWriter writer = new VerwaltungsGruppeWriter();
+		writer.writeAll(verwaltungsGruppe);
+
+	}
+
+	private void readFile() throws IOException {
+		VerwaltungsGruppe neueGruppe = new VerwaltungsGruppe();
+		VerwaltungsGruppeReader fileReader = new VerwaltungsGruppeReader();
+		System.out.println("Start reading file");
+		neueGruppe = fileReader.readGruppe();
 
 	}
 }

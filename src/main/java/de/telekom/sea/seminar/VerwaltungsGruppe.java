@@ -1,5 +1,10 @@
 package de.telekom.sea.seminar;
 
+import de.telekom.sea.seminar.events.Event;
+import de.telekom.sea.seminar.events.EventListener;
+import de.telekom.sea.seminar.events.EventRegistration;
+import de.telekom.sea.seminar.interfaces.MyList;
+
 public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegistration {
 
 	private Object[] objectListe = new Object[15];
