@@ -1,6 +1,8 @@
-package de.telekom.sea.seminar;
+package de.telekom.sea.seminar.interfaces;
 
 import java.io.IOException;
+
+import de.telekom.sea.seminar.events.EventListener;
 
 public interface MyMenu extends EventListener, java.io.Closeable {
 

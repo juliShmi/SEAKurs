@@ -2,7 +2,7 @@ package de.telekom.sea;
 
 import java.io.IOException;
 
-import de.telekom.sea.seminar.SeminarApp;
+import de.telekom.sea.seminar.run.SeminarApp;
 
 public class Main {
 

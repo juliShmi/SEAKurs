@@ -1,4 +1,6 @@
-package de.telekom.sea.seminar;
+package de.telekom.sea.seminar.interfaces;
+
+import de.telekom.sea.seminar.events.EventRegistration;
 
 public interface MyList extends EventRegistration {
 	

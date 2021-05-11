@@ -1,6 +1,12 @@
-package de.telekom.sea.seminar;
+package de.telekom.sea.seminar.run;
 
 import java.io.IOException;
+
+import de.telekom.sea.seminar.BaseObject;
+import de.telekom.sea.seminar.Menu;
+import de.telekom.sea.seminar.VerwaltungsGruppe;
+import de.telekom.sea.seminar.interfaces.MyList;
+import de.telekom.sea.seminar.interfaces.MyMenu;
 
 public class SeminarApp extends BaseObject {
 

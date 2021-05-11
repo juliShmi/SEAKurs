@@ -2,6 +2,15 @@ package de.telekom.sea.seminar;
 
 import java.io.IOException;
 
+import de.telekom.sea.seminar.events.Event;
+import de.telekom.sea.seminar.events.EventListener;
+import de.telekom.sea.seminar.interfaces.MyList;
+import de.telekom.sea.seminar.interfaces.MyMenu;
+import de.telekom.sea.seminar.readers.PersonReader;
+import de.telekom.sea.seminar.readers.VerwaltungsGruppeReader;
+import de.telekom.sea.seminar.writers.PersonWriter;
+import de.telekom.sea.seminar.writers.VerwaltungsGruppeWriter;
+
 public class Menu implements MyMenu, EventListener, java.io.Closeable {
 
 	private MyList verwaltungsGruppe;
@@ -44,8 +53,8 @@ public class Menu implements MyMenu, EventListener, java.io.Closeable {
 		System.out.println("4: delete person by index");
 		System.out.println("5: delete person by name");
 		System.out.println("6: search person");
-		System.out.println("7: write by index");
-		System.out.println("8: write all list");
+		System.out.println("7: write all list");
+		System.out.println("8: read file");
 		System.out.println("9: quit");
 	}
 
@@ -82,12 +91,12 @@ public class Menu implements MyMenu, EventListener, java.io.Closeable {
 			searchPerson();
 			break;
 		case "7":
-			System.out.println("7: write by index");
-			writePersonByIndex();
+			System.out.println("7: write all list");
+			writeAllList();
 			break;
 		case "8":
-			System.out.println("8: write all list");
-			writeAllList();
+			System.out.println("8: read file");
+			readFile();
 			break;
 		case "9":
 			System.out.println("9: quit");
@@ -164,18 +173,17 @@ public class Menu implements MyMenu, EventListener, java.io.Closeable {
 
 	}
 
-	private void writePersonByIndex() throws IOException {
-		PersonWriter personWriter = new PersonWriter();
-		System.out.println("File created");
-		System.out.println("Please input index to write");
-		int index = scanner.nextInt();
-		personWriter.write((Person) verwaltungsGruppe.get(index));
-	}
 
 	private void writeAllList() throws IOException {
 		System.out.println("File created");
 		VerwaltungsGruppeWriter writer = new VerwaltungsGruppeWriter();
 		writer.writeAll(verwaltungsGruppe);
 
+	}
+	
+	private void readFile() throws IOException {
+		System.out.println("Start reading file");
+		VerwaltungsGruppeReader fileReader = new VerwaltungsGruppeReader();
+		fileReader.readGruppe();
 	}
 }

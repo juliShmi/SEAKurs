@@ -1,4 +1,4 @@
-package de.telekom.sea.seminar;
+package de.telekom.sea.seminar.events;
 
 public interface EventRegistration {
 	
