@@ -4,10 +4,19 @@ public class Person extends BaseObject {
 		
 	private String vorname;
 	private String nachname;
+	private long id;
 	
 	public void abs() {
 		System.out.println(getI());
 		super.setI(3);
+	}
+	
+	public void setID(long id) {
+		this.id = id;
+	}
+	
+	public long getID() {
+		return this.id;
 	}
 
 	// set name
