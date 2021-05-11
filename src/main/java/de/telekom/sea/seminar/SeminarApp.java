@@ -1,5 +1,7 @@
 package de.telekom.sea.seminar;
 
+import java.io.IOException;
+
 public class SeminarApp extends BaseObject {
 
 	private static SeminarApp theInstance; // = null by default
@@ -7,7 +9,7 @@ public class SeminarApp extends BaseObject {
 	private SeminarApp() {
 	}
 
-	public void run(String[] args) {
+	public void run(String[] args) throws IOException {
 
 		MyList verwaltungsGruppe = new VerwaltungsGruppe();
 		try (MyMenu menu = new Menu(verwaltungsGruppe)) {
