@@ -173,17 +173,18 @@ public class Menu implements MyMenu, EventListener, java.io.Closeable {
 
 	}
 
-
 	private void writeAllList() throws IOException {
 		System.out.println("File created");
 		VerwaltungsGruppeWriter writer = new VerwaltungsGruppeWriter();
 		writer.writeAll(verwaltungsGruppe);
 
 	}
-	
+
 	private void readFile() throws IOException {
-		System.out.println("Start reading file");
+		VerwaltungsGruppe neueGruppe = new VerwaltungsGruppe();
 		VerwaltungsGruppeReader fileReader = new VerwaltungsGruppeReader();
-		fileReader.readGruppe();
+		System.out.println("Start reading file");
+		neueGruppe = fileReader.readGruppe();
+
 	}
 }
