@@ -15,7 +15,7 @@ public class VerwaltungsGruppeWriter {
 			PersonWriter personWriter = new PersonWriter(writerFile);
 			
 
-			String header = String.format("%s;%s;%s;\n", "ID", "First name", "Last name");
+			String header = String.format("%s;%s;%s;%s;\n", "ID", "First name", "Last name", "Anrede");
 			writerFile.write(header);
 			for (int i = 0; i < (verwaltungsGruppe.size()); i++) {
 				Person person = (Person) verwaltungsGruppe.get(i);

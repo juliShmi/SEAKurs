@@ -107,15 +107,19 @@ public class Menu implements MyMenu, EventListener, java.io.Closeable {
 	}
 
 	private void inputPerson() {
-		Person p = new Person();
 		String firstName;
 		String lastName;
+		String anrede;
+		Person p = new Person();
 		System.out.println("Please input a  first name: ");
 		firstName = scanner.nextLine();
 		System.out.println("Please input a last name: ");
 		lastName = scanner.nextLine();
+		System.out.println("Please input anrede: ");
+		anrede = scanner.nextLine();
 		p.setVorname(firstName);
 		p.setNachname(lastName);
+		p.setAnrede(anrede);
 		verwaltungsGruppe.add(p);
 	}
 
@@ -126,7 +130,7 @@ public class Menu implements MyMenu, EventListener, java.io.Closeable {
 			for (int i = 0; i < verwaltungsGruppe.size(); i++) {
 				if (verwaltungsGruppe.get(i) != null) {
 					Person p = (Person) verwaltungsGruppe.get(i);
-					System.out.println(p.getVorname() + " " + p.getNachname());
+					System.out.println(p.getVorname() + " " + p.getNachname()+ " "+ p.getAnrede());
 				}
 			}
 		}
@@ -181,7 +185,7 @@ public class Menu implements MyMenu, EventListener, java.io.Closeable {
 	}
 
 	private void readFile() throws IOException {
-		VerwaltungsGruppe neueGruppe = new VerwaltungsGruppe();
+		VerwaltungsGruppe neueGruppe;
 		VerwaltungsGruppeReader fileReader = new VerwaltungsGruppeReader();
 		System.out.println("Start reading file");
 		neueGruppe = fileReader.readGruppe();
