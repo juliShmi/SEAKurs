@@ -24,8 +24,8 @@ public class PersonWriter {
 	public void write(Person person) throws IOException {
 		try {
 
-			String personFormat = String.format("%s;%s;%s;\n", person.getId().toString(), person.getVorname(),
-					person.getNachname());
+			String personFormat = String.format("%s;%s;%s;%s;\n", person.getId().toString(), person.getVorname(),
+					person.getNachname(), person.getAnrede());
 			bufferedWriter.write(personFormat);
 		} finally
 
