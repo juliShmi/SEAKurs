@@ -7,7 +7,7 @@ import de.telekom.sea.seminar.interfaces.MyList;
 
 public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegistration {
 
-	private Object[] objectListe = new Object[15];
+	private Object[] objectListe = new Object[3];
 	private int index = 0;
 
 	private EventListener eventListener;
@@ -36,7 +36,11 @@ public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegist
 	}
 
 	public void subscribe(EventListener eventListener) {
-		this.eventListener = eventListener;
+		if (eventListener != null) {
+			this.eventListener = eventListener;
+		} else {
+			throw new RuntimeException("EventListener is null");
+		}
 	}
 
 	public int size() {
@@ -77,7 +81,8 @@ public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegist
 					success = true;
 					return success;
 				}
-			}return success;
+			}
+		return success;
 	}
 
 	public boolean remove(int index) {
@@ -90,9 +95,15 @@ public class VerwaltungsGruppe extends BaseObject implements MyList, EventRegist
 				objectListe[i + 1] = null;
 				i++;
 			}
-			Event event = new Event();
-			event.setDescription("Person in position" + i + " is deleted");
-			eventListener.receive(event);
+
+			if (eventListener != null)
+
+			{
+				Event event = new Event();
+				event.setDescription("Person in position" + i + " is deleted");
+				eventListener.receive(event);
+			}
+
 			return true;
 		} else
 			return false;
