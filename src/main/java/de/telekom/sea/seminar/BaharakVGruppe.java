@@ -90,7 +90,6 @@ public class BaharakVGruppe extends BaseObject implements MyList, EventRegistrat
 			if (get(i).equals(obj)) {
 				--index;
 				shiftList(i);
-				
 				description = "a person has been deleted.";
 				sendEvent(description);
 				return true;

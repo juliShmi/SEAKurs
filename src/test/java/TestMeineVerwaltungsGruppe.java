@@ -71,6 +71,8 @@ public class TestMeineVerwaltungsGruppe {
 			vwg.get(-1);
 		});
 	}
+	Integer i = 4;
+	String t = i.toString();
 	
 	@Test
 	void testRemoveByIndex() {
