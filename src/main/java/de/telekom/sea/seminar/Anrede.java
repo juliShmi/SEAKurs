@@ -1,7 +1,7 @@
 package de.telekom.sea.seminar;
 
 public enum Anrede {
-	FRAU, HERR, DIVERS;
+	FRAU, DIVERS, MANN;
 
 	public static Anrede fromString(final String value) {
 		switch (value) {
@@ -14,7 +14,7 @@ public enum Anrede {
 		case "mann":
 		case "M":
 		case "m":
-			return HERR;
+			return MANN;
 		case "Divers":
 		case "divers":
 		case "D":
@@ -30,7 +30,7 @@ public enum Anrede {
 		switch (this) {
 		case FRAU:
 			return "Frau";
-		case HERR:
+		case MANN:
 			return "Mann";
 		case DIVERS:
 			return "Divers";
